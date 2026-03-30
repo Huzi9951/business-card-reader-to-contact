@@ -5,3 +5,5 @@ __pycache__/
 /scans.db
 /tmp/
 node_modules/
+
+.vercel

@@ -34,7 +34,7 @@ def init_db():
 init_db()
 
 def check_and_increment_limit():
-    """Check if the global daily limit is reached (15 scans/day)."""
+    """Check if the global daily limit is reached (40 scans/day)."""
     # Auto-recreate DB if deleted while server is running
     init_db()
     
@@ -49,7 +49,7 @@ def check_and_increment_limit():
         count = 1
     else:
         count = row[0]
-        if count >= 15:
+        if count >= 40:
             conn.close()
             return False
         c.execute("UPDATE scan_limits SET count = count + 1 WHERE scan_date = ?", (today,))
@@ -57,7 +57,7 @@ def check_and_increment_limit():
         
     conn.commit()
     conn.close()
-    print(f"[{today}] Server-wide Scans Today: {count}/15")
+    print(f"[{today}] Server-wide Scans Today: {count}/40")
     return True
 
 print("✅ Server initialized with SQLite rate limiting.")
@@ -178,7 +178,7 @@ def scan():
     try:
         if not check_and_increment_limit():
             return jsonify({
-                'error': 'Global scan limit reached (15 cards/day). To ensure we stay within the free tier, please try again tomorrow!',
+                'error': 'Global scan limit reached (40 cards/day). To ensure we stay within the free tier, please try again tomorrow!',
                 'limit_reached': True
             }), 429
 
