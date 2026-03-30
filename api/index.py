@@ -108,11 +108,6 @@ def run_vision_ocr(base64_img):
         return ""
         
     text = data['responses'][0]['textAnnotations'][0]['description']
-    
-    # Save to debug file
-    with open('ocr_debug.txt', 'a', encoding='utf-8') as f:
-        f.write("\n" + "="*50 + "\n")
-        f.write(f"VISION OCR RESULT:\n{text}\n")
         
     return text
 
