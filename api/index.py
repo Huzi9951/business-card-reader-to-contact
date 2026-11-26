@@ -1,6 +1,6 @@
 """
 CardScan AI — Backend Server
-EasyOCR for text extraction + Groq API for entity extraction.
+Google Cloud Vision for text extraction + Groq for contact fields.
 API key loaded from .env file.
 """
 
